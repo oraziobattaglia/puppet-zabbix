@@ -148,6 +148,7 @@ class zabbix::agent (
   $zbx_templates                                  = $zabbix::params::agent_zbx_templates,
   Array[Hash] $zbx_macros                         = [],
   Integer[1,4] $zbx_interface_type                = 1,
+  Hash[String, Any] $zbx_interface_details        = {},
   $agent_configfile_path                          = $zabbix::params::agent_configfile_path,
   $pidfile                                        = $zabbix::params::agent_pidfile,
   $servicename                                    = $zabbix::params::agent_servicename,
@@ -251,16 +252,17 @@ class zabbix::agent (
     $_hostname = pick($hostname, $facts['networking']['fqdn'])
 
     class { 'zabbix::resources::agent':
-      hostname      => $_hostname,
-      ipaddress     => $listen_ip,
-      use_ip        => $agent_use_ip,
-      port          => $listenport,
-      groups        => [$groups].flatten(),
-      group_create  => $zbx_group_create,
-      templates     => $zbx_templates,
-      macros        => $zbx_macros,
-      interfacetype => $zbx_interface_type,
-      proxy         => $use_proxy,
+      hostname         => $_hostname,
+      ipaddress        => $listen_ip,
+      use_ip           => $agent_use_ip,
+      port             => $listenport,
+      groups           => [$groups].flatten(),
+      group_create     => $zbx_group_create,
+      templates        => $zbx_templates,
+      macros           => $zbx_macros,
+      interfacetype    => $zbx_interface_type,
+      interfacedetails => $zbx_interface_details,
+      proxy            => $use_proxy,
     }
   }
 
