@@ -20,6 +20,15 @@ describe 'zabbix_host type', unless: default[:platform] =~ %r{(ubuntu-16.04|debi
                    ['Linux by Zabbix agent', 'ICMP Ping']
                  end
 
+      template_snmp = case zabbix_version
+                 when '4.0'
+                   ['Template OS Linux SNMPv2', 'Template Module ICMP Ping']
+                 when '5.0'
+                   ['Template OS Linux SNMP', 'Template Module ICMP Ping']
+                 else
+                   ['Linux SNMP', 'ICMP Ping']
+                 end
+
       pp1 = <<-EOS
         class { 'apache':
             mpm_module => 'prefork',
@@ -80,7 +89,7 @@ describe 'zabbix_host type', unless: default[:platform] =~ %r{(ubuntu-16.04|debi
           use_ip           => false,
           port             => 161,
           groups           => ['Virtual machines'],
-          templates        => #{template},
+          templates        => #{template_snmp},
           macros           => [],
           interfacetype    => 2,
           interfacedetails => {"version" => 2, "bulk" => 0, "community" => "public"},
@@ -193,7 +202,7 @@ describe 'zabbix_host type', unless: default[:platform] =~ %r{(ubuntu-16.04|debi
           expect(test3['interfaces'][0]['useip']).to eq('0')
         end
         it 'has templates attached' do
-          expect(test3['parentTemplates'].map { |t| t['host'] }.sort).to eq(template.sort)
+          expect(test3['parentTemplates'].map { |t| t['host'] }.sort).to eq(template_snmp.sort)
         end
       end
     end
