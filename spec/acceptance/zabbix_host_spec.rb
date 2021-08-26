@@ -21,13 +21,13 @@ describe 'zabbix_host type', unless: default[:platform] =~ %r{(ubuntu-16.04|debi
                  end
 
       template_snmp = case zabbix_version
-                 when '4.0'
-                   ['Template OS Linux SNMPv2', 'Template Module ICMP Ping']
-                 when '5.0'
-                   ['Template OS Linux SNMP', 'Template Module ICMP Ping']
-                 else
-                   ['Linux SNMP', 'ICMP Ping']
-                 end
+                      when '4.0'
+                        ['Template OS Linux SNMPv2', 'Template Module ICMP Ping']
+                      when '5.0'
+                        ['Template OS Linux SNMP', 'Template Module ICMP Ping']
+                      else
+                        ['Linux SNMP', 'ICMP Ping']
+                      end
 
       pp1 = <<-EOS
         class { 'apache':
