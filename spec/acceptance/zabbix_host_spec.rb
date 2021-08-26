@@ -74,6 +74,17 @@ describe 'zabbix_host type', unless: default[:platform] =~ %r{(ubuntu-16.04|debi
           templates => #{template},
           macros    => [],
         }
+
+        zabbix_host { 'test3.example.com':
+          ipaddress        => '127.0.0.3',
+          use_ip           => false,
+          port             => 161,
+          groups           => ['Virtual machines'],
+          templates        => #{template},
+          macros           => [],
+          interfacetype    => 2,
+          interfacedetails => {"version" => 2, "bulk" => 0, "community" => "public"},
+        }
         EOS
 
       it 'works with no error on the third apply' do
