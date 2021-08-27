@@ -1,0 +1,9 @@
+Per far andare i test su lcsp-puppet-01 installati:
+
+sudo apt install ruby-bundler
+sudo apt install ruby-dev
+bundle install --path .vendor/ --with system_tests --without development release --jobs "$(nproc)"; bundle update; bundle clean
+
+TODO
+1. Sistemare spec\acceptance\zabbix_host_spec.rb per escludere con Zabbix 4.0 i details
+
