@@ -104,7 +104,7 @@ describe 'zabbix_host type', unless: default[:platform] =~ %r{(ubuntu-16.04|debi
       end
 
       let(:result_hosts) do
-        zabbixapi('localhost', 'Admin', 'zabbix', 'host.get', selectParentTemplates: ['host'], selectInterfaces: %w[dns ip main port type useip], selectGroups: ['name'], output: ['host', '']).result
+        zabbixapi('localhost', 'Admin', 'zabbix', 'host.get', selectParentTemplates: ['host'], selectInterfaces: %w[dns ip main port type useip details], selectGroups: ['name'], output: ['host', '']).result
       end
 
       context 'test1.example.com' do
