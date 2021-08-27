@@ -187,7 +187,7 @@ describe 'zabbix_host type', unless: default[:platform] =~ %r{(ubuntu-16.04|debi
       if zabbix_version != '4.0'
         context 'test3.example.com' do
           let(:test3) { result_hosts.select { |h| h['host'] == 'test3.example.com' }.first }
-  
+
           it 'is created' do
             expect(test3['host']).to eq('test3.example.com')
           end
@@ -219,7 +219,7 @@ describe 'zabbix_host type', unless: default[:platform] =~ %r{(ubuntu-16.04|debi
           it 'has templates attached' do
             expect(test3['parentTemplates'].map { |t| t['host'] }.sort).to eq(template_snmp.sort)
           end
-        end      
+        end
       end
     end
   end
