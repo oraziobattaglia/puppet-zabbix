@@ -9,7 +9,8 @@
 # @param templates List of templates which should be attached to this host.
 # @param macros Array of hashes (macros) which should be attached to this host.
 # @param proxy Whether it is monitored by an proxy or not.
-# @param interfacetype Internally used identifier for the host interface
+# @param interfacetype Internally used identifier for the host interface.
+# @param interfacedetails Hash with interface details for SNMP when interface type is 2.
 class zabbix::resources::agent (
   $hostname                = undef,
   $ipaddress               = undef,

@@ -26,13 +26,14 @@
 # @param zbx_group_create Whether to create hostgroup if missing.
 # @param zbx_templates List of templates which will be added when host is configured.
 # @param zbx_macros List of macros which will be added when host is configured.
-# @param zbx_interface_type Integer specifying type of interface to be created
-# @param agent_configfile_path Agent config file path defaults to /etc/zabbix/zabbix_agentd.conf
+# @param zbx_interface_type Integer specifying type of interface to be created.
+# @param zbx_interface_details Hash with interface details for SNMP when interface type is 2.
+# @param agent_configfile_path Agent config file path defaults to /etc/zabbix/zabbix_agentd.conf.
 # @param pidfile Name of pid file.
 # @param servicename Zabbix's agent service name.
 # @param logfile Name of log file.
 # @param logfilesize Maximum size of log file in MB.
-# @param logtype Specifies where log messages are written to. Can be one of: console, file, system
+# @param logtype Specifies where log messages are written to. Can be one of: console, file, system.
 # @param debuglevel Specifies debug level.
 # @param sourceip Source ip address for outgoing connections.
 # @param allowkey Allow execution of item keys matching pattern.
