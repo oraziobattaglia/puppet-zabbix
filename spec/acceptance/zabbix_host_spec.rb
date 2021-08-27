@@ -195,10 +195,15 @@ describe 'zabbix_host type', unless: default[:platform] =~ %r{(ubuntu-16.04|debi
         it 'has a correct interface type configured' do
           expect(test3['interfaces'][0]['type']).to eq('2')
         end
-        it 'has a correct interface details configured' do
-          # expect(test3['interfaces'][0]['details']).to include(version: '2', bulk: '0', community: 'public')
-          expect(test3['interfaces'][0]['details']).to_not be_nil
+
+        # Zabbix version 4.0 doesn't support interface details hash
+        if zabbix_version != '4.0'
+          it 'has a correct interface details configured' do
+            expect(test3['interfaces'][0]['details']).to include(version: '2', bulk: '0', community: 'public')
+            # expect(test3['interfaces'][0]['details']).to_not be_nil
+          end
         end
+
         it 'has a correct interface useip configured' do
           expect(test3['interfaces'][0]['useip']).to eq('0')
         end
